@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1>Cadastro de Usuário</h1>
+    <form action="/cadastro" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="cpf" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" required>
+      </div>
+      <div class="mb-3">
+        <label for="birthDate" class="form-label">Data de Nascimento</label>
+        <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="mb-3">
+        <label for="street" class="form-label">Endereço</label>
+        <input type="text" class="form-control" id="street" name="street" required>
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">Cidade</label>
+        <input type="text" class="form-control" id="city" name="city" required>
+      </div>
+      <div class="mb-3">
+        <label for="state" class="form-label">Estado</label>
+        <input type="text" class="form-control" id="state" name="state" required>
+      </div>
+      <div class="mb-3">
+        <label for="zipCode" class="form-label">CEP</label>
+        <input type="text" class="form-control" id="zipCode" name="zipCode" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+    <a href="/users" class="btn btn-secondary mt-4">Ver Usuários</a>
+  </div>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

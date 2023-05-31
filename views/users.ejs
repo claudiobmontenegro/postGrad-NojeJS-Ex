@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Usuários</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1>Lista de Usuários</h1>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Data de Nascimento</th>
+          <th>E-mail</th>
+          <th>Endereço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(function(user) { %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.cpf %></td>
+            <td><%= user.birthDate %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= user.address ? user.address.street : '' %>,
+              <%= user.address ? user.address.city : '' %>,
+              <%= user.address ? user.address.state : '' %>,
+              <%= user.address ? user.address.zipcode : '' %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
