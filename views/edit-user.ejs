@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit User</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Editar Usuário</h2>
+
+    <form action="/users/update" method="POST">
+      <input type="hidden" name="cpf" value="<%= user.cpf %>">
+
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="birthDate">Data de Nascimento</label>
+        <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%= user.birthDate.toISOString().substr(0, 10) %>">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+      </div>
+
+      <% if (user.address) { %>
+      <div class="form-group">
+        <label for="street">Rua</label>
+        <input type="text" class="form-control" id="street" name="street" value="<%= user.address.street %>">
+      </div>
+
+      <div class="form-group">
+        <label for="city">Cidade</label>
+        <input type="text" class="form-control" id="city" name="city" value="<%= user.address.city %>">
+      </div>
+
+      <div class="form-group">
+        <label for="state">Estado</label>
+        <input type="text" class="form-control" id="state" name="state" value="<%= user.address.state %>">
+      </div>
+
+      <div class="form-group">
+        <label for="zipcode">CEP</label>
+        <input type="text" class="form-control" id="zipcode" name="zipcode" value="<%= user.address.zipcode %>">
+      </div>
+      <% } %>
+      <br> 
+      <button type="submit" class="btn btn-primary">Atualizar</button>
+      <a href="/users" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+</body>
+
+</html>

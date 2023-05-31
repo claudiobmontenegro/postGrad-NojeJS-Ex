@@ -59,7 +59,7 @@ app.post('/cadastro', async (req, res) => {
             }
         });
 
-        await user.save();        
+        await user.save();
 
         res.redirect('/users');
     } catch (error) {
@@ -75,6 +75,69 @@ app.get('/users', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Ocorreu um erro ao carregar os usuários.');
+    }
+});
+
+app.get('/users/edit', async (req, res) => {
+    const { cpf } = req.query;
+
+    try {
+        const user = await User.findOne({ cpf });
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        res.render('edit-user', { user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ocorreu um erro ao buscar o usuário.' });
+    }
+});
+
+app.post('/users/update', async (req, res) => {
+    try {
+        const { cpf, name, birthDate, email, street, city, state, zipcode } = req.body;
+
+        const user = await User.findOne({ cpf });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        user.name = name;
+        user.birthDate = birthDate;
+        user.email = email;
+        user.address = {
+            street,
+            city,
+            state,
+            zipcode
+        };
+
+        await user.save();
+
+        res.redirect('/users');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+app.post('/users/delete/:cpf', async (req, res) => {
+    const { cpf } = req.params;
+
+    try {
+        const result = await User.findOneAndDelete({ cpf });
+
+        if (!result) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        res.redirect('/users');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ocorreu um erro ao excluir o usuário.' });
     }
 });
 

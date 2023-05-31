@@ -20,25 +20,42 @@
           <th>Data de Nascimento</th>
           <th>E-mail</th>
           <th>Endereço</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <% users.forEach(function(user) { %>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.cpf %></td>
-            <td><%= user.birthDate %></td>
-            <td><%= user.email %></td>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= user.cpf %>
+            </td>
+            <td>
+              <%= user.birthDate %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
             <td>
               <%= user.address ? user.address.street : '' %>,
-              <%= user.address ? user.address.city : '' %>,
-              <%= user.address ? user.address.state : '' %>,
-              <%= user.address ? user.address.zipcode : '' %>
+                <%= user.address ? user.address.city : '' %>,
+                  <%= user.address ? user.address.state : '' %>,
+                    <%= user.address ? user.address.zipcode : '' %>
+            </td>
+            <td>
+              <a href="/users/edit?cpf=<%= user.cpf %>" class="btn btn-primary">Editar</a>
+              <form action="/users/delete/<%= user.cpf %>" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Deletar</button>
+              </form>
             </td>
           </tr>
-        <% }); %>
+          <% }); %>
       </tbody>
     </table>
+    <a href="/" class="btn btn-success">Adicionar Novo Usuário</a>
   </div>
   <script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
